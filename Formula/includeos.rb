@@ -16,7 +16,16 @@ class Includeos < Formula
 	def install
 		system "mkdir -p \"#{prefix}\""
 		system "touch \"#{prefix}\"/dummy"
-		system "conan config install https://github.com/includeos/conan_config.git"
-		system "conan remote add -f includeos-test https://api.bintray.com/conan/includeos/test-packages"
+	end
+
+	def caveats; <<~EOS
+		You also have to install the IncludeOS remote and configuration profiles. 
+		
+		This can now be done automatically by executing the following commands:
+
+		conan remote add -f includeos-test https://api.bintray.com/conan/includeos/test-packages
+		conan config install https://github.com/includeos/conan_config.git
+
+	EOS
 	end
 end
