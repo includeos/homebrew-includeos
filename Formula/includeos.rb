@@ -1,4 +1,4 @@
-class IncludeosBuildEssentials < Formula
+class Includeos < Formula
 	desc "IncludeOS build essentials for MacOS"
 	homepage "http://includeos.org"
 
