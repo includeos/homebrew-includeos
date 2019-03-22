@@ -6,7 +6,7 @@ class Includeos < Formula
 	sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 	version "0.1.0"
-	revision 2
+	revision 3
 	
 	depends_on "python3"
 	depends_on "conan"
@@ -16,6 +16,8 @@ class Includeos < Formula
 	def install
 		system "mkdir -p \"#{prefix}\""
 		system "touch \"#{prefix}\"/dummy"
+		# Dependencies needed by vmrunner/boot
+		system "pip3 install jsonschema psutil"
 	end
 
 	def caveats; <<~EOS
