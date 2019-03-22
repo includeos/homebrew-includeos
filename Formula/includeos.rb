@@ -21,11 +21,13 @@ class Includeos < Formula
 	def caveats; <<~EOS
 		You also have to install the IncludeOS remote and configuration profiles. 
 		
-		This can now be done automatically by executing the following commands:
+		This can be done automatically by executing the following command:
 
-		conan remote add -f includeos-test https://api.bintray.com/conan/includeos/test-packages
 		conan config install https://github.com/includeos/conan_config.git
 
+		Note that this will overwrite your existing Conan profiles and
+		remotes, unless you also set CONAN_USER_HOME to point to an
+		unused location (default is ~/.conan).
 	EOS
 	end
 end
