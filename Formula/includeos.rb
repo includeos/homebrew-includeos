@@ -6,12 +6,13 @@ class Includeos < Formula
 	sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 	version "0.1.0"
-	revision 3
+	revision 4
 	
 	depends_on "python3"
 	depends_on "conan"
 	depends_on "cmake"
 	depends_on "llvm@6"
+	depends_on "qemu"
 
 	def install
 		system "mkdir -p \"#{prefix}\""
