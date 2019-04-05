@@ -1,0 +1,33 @@
+os: osx
+language: bash
+
+git:
+  depth: false
+
+before_install:
+  - brew tap includeos/includeos
+
+install:
+  - brew install includeos
+  - conan --version
+
+before_script:
+  - conan config install https://github.com/includeos/conan_config.git
+  - git clone https://github.com/includeos/hello_world
+
+script:
+  - conan install hello_world -pr clang-6.0-macos-x86_64
+  - source activate.sh
+  - cmake hello_world
+  - cmake --build .
+  - gtimeout 7 boot hello > hello_log.txt || true
+  - |
+    if grep -F "Running [ Hello world - OS included ]" hello_log.txt
+    then
+      echo "Hello World -  Success! :)"
+    else
+      echo "Failed to reach Success :("
+    fi
+
+after_script:
+  - source deactivate.sh
