@@ -10,7 +10,6 @@ before_cache:
 cache:
   - directories:
     - $HOME/Library/Caches/Homebrew
-    - /usr/local/Homebrew/Library/Taps/*/*
 
 before_install:
   - brew tap includeos/includeos
