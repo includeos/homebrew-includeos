@@ -4,6 +4,14 @@ language: bash
 git:
   depth: false
 
+before_cache:
+  - brew cleanup
+
+cache:
+  - directories:
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew/Library/Taps/*/*
+
 before_install:
   - brew tap includeos/includeos
 
@@ -26,7 +34,7 @@ script:
     then
       echo "Hello World -  Success! :)"
     else
-      echo "Failed to reach Success :("
+      echo "Failed :("
     fi
 
 after_script:
