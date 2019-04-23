@@ -1,8 +1,17 @@
 os: osx
+osx_image: xcode10.2
+
 language: bash
 
 git:
   depth: false
+
+before_cache:
+  - brew cleanup
+
+cache:
+  - directories:
+    - $HOME/Library/Caches/Homebrew
 
 before_install:
   - brew tap includeos/includeos
@@ -26,7 +35,7 @@ script:
     then
       echo "Hello World -  Success! :)"
     else
-      echo "Failed to reach Success :("
+      echo "Failed :("
     fi
 
 after_script:
