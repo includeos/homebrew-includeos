@@ -27,15 +27,15 @@ before_script:
 script:
   - conan install hello_world -pr clang-6.0-macos-x86_64
   - source activate.sh
-  - cmake hello_world
+  - cmake -DFOR_PRODUCTION=OFF hello_world
   - cmake --build .
-  - gtimeout 7 boot hello > hello_log.txt || true
+  - gtimeout 10 boot hello 2>&1 | tee hello.log  || true
   - |
-    if grep -F "Running [ Hello world - OS included ]" hello_log.txt
+    if grep -F "Running [ Hello world - OS included ]" hello.log
     then
       echo "Hello World -  Success! :)"
     else
-      echo "Failed :("
+      exit 1
     fi
 
 after_script:
